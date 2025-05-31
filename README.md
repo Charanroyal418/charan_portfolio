@@ -1,1 +1,417 @@
 # charan_portfolio
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>K Charan Raj | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons"></script>
+  <style>
+    /* Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background-color: #0d0d0d;
+      color: #f5f5f5;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    /* Unique background with animated gradient */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      background: linear-gradient(125deg, #000428,rgb(61, 183, 231), #151831);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+    }
+    
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Create a mesh grid overlay */
+    .grid {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 20px 20px;
+      z-index: 1;
+    }
+    
+    /* Glowing orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(30px);
+      opacity: 0.3;
+      z-index: 0;
+    }
+    
+    .orb:nth-child(1) {
+      top: 20%;
+      left: 10%;
+      width: 300px;
+      height: 300px;
+      background: rgba(0, 255, 234, 0.3);
+      animation: float 15s ease-in-out infinite;
+    }
+    
+    .orb:nth-child(2) {
+      top: 60%;
+      right: 10%;
+      width: 200px;
+      height: 200px;
+      background: rgba(106, 0, 255, 0.2);
+      animation: float 12s ease-in-out infinite reverse;
+    }
+    
+    @keyframes float {
+      0% { transform: translate(0px, 0px) rotate(0deg); }
+      50% { transform: translate(-15px, 15px) rotate(180deg); }
+      100% { transform: translate(0px, 0px) rotate(360deg); }
+    }
+    
+    #particles-js {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+    
+    .content {
+      position: relative;
+      z-index: 10;
+    }
+    
+    header {
+      text-align: center;
+      padding: 80px 20px 40px;
+      position: relative;
+      z-index: 10;
+    }
+    header h1 {
+      font-size: 3.5em;
+      color: #00ffff;
+      margin-bottom: 10px;
+      text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    }
+    header p {
+      font-size: 1.2em;
+      color: #ccc;
+    }
+    .section {
+      background-color: rgba(0, 20, 40, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 40px;
+      margin: 20px auto;
+      max-width: 900px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      border: 1px solid rgba(0, 255, 255, 0.1);
+    }
+    .section:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2);
+    }
+    .section h2 {
+      font-size: 2em;
+      color: #00bcd4;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .icon {
+      width: 28px;
+      height: 28px;
+      color: #00bcd4;
+    }
+    ul, p {
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+    a {
+      color: #00ffff;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    a:hover {
+      color: #fff;
+      text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(0, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background: rgba(0, 255, 255, 0.3);
+      transform: translateY(-5px);
+    }
+    skills .content{
+        flex-direction: column;
+    }
+
+    .skills .content .column{
+        position: relative;
+        width: 100%;
+    }
+
+    .skills .content .col-right{
+        margin-top: 40px;
+    }
+ 
+    .contact-form{
+        padding: 35px 40px;
+      }    
+    /* Scroll animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .fade-in.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<div class="background"></div>
+<div class="grid"></div>
+<div class="orb"></div>
+<div class="orb"></div>
+<div id="particles-js"></div>
+
+<div class="content">
+  <header>
+    <h1> K Charan Raj</h1>
+    <p>Computer Science Engineering Student | java Developer | full stack Developer</p>
+    <div class="social-links">
+      <a href="https://github.com/Charanroyal418" target="_blank"><i data-feather="github" class="icon"></i></a>
+      <a href="https://www.linkedin.com/in/kodipunjula-charan-raj-2624b3276?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i data-feather="linkedin" class="icon"></i></a>
+      <a href="kodicharan062@gmail.com"><i data-feather="mail" class="icon"></i></a>
+    <a href="https://www.facebook.com/profile.php?id=100066744858781" target="_blank"><i data-feather="facebook" class="icon"></i></a>
+    </div>
+  </header>
+
+  <div class="section fade-in">
+    <h2><i data-feather="user" class="icon"></i> Profile Summary</h2>
+    <p>Aspiring Software Engineer with a B.Tech in Computer Science Engineering, passionate about developing innovative solutions. Proficient in Python, Java, HTML, and C++, with a keen interest in full-stack development, AI, and problem- solving. Seeking opportunities to leverage my technical expertise and creativity to contribute meaningfully to dynamic projects and advance in the field of technology.</p>
+  </div>
+
+  <div class="section fade-in">
+    <h2><i data-feather="cpu" class="icon"></i> Technical Skills</h2>
+    <ul>
+      <li><strong>Programming:</strong> Python, Java, C++</li>
+      <li><strong>Familiar with:</strong> Data Structures And Algorithm</li>
+      <li><strong>Web Development:</strong> HTML, CSS</li>
+      <li><strong>Databases:</strong> MySQL</li>
+      <li><strong>Languages:</strong> English, Telugu,Tamil</li>
+    </ul>
+  </div>
+
+  <div class="section fade-in">
+    <h2><i data-feather="folder" class="icon"></i> Projects</h2>
+    <ul>
+      <li><strong>AUTO REPLY BOT:</strong>This project is a Python-based chatbot designed to automatically respond to messages on . The bot can detect incoming chats and provide relevantreplies based on predefined logic or AI-driven responses. Key Features:
+• Automated Message Handling
+• Customizable Responses
+• User-Friendly Interface
+• Integration with APIs
+• Secure Efficient.</li>
+      <li><strong>PORTFOLIO:</strong>This portfolio is a web-based showcase designed to present skills, projects, and professional experience in an engaging manner. Built using HTML, CSS, it offers a sleek and responsive design that adapts seamlessly across different devices.</li>
+    </ul>
+  </div>
+
+  <div class="section fade-in">
+    <h2><i data-feather="book-open" class="icon"></i> Education</h2>
+    <ul>
+      <li>
+        <strong>B.Tech in Computer Science and Engineering</strong><br>
+        Dr.M.G.R.University (2023 - 2027) CGPA: 8.36
+      </li>
+      <li>
+        <strong>Intermediate (MPC)</strong><br>
+        Sri Vivekanadha Junior College (2021 - 2023) Percentage: 72%
+      </li>
+      <li>
+        <strong>Schooling</strong><br>
+        Keshava Reddy E.M School (2010 - 2021) GPA: 99.8%
+      </li>
+    </ul>
+  </div>
+
+  <div class="section fade-in">
+    <h2><i data-feather="award" class="icon"></i> Certifications</h2>
+    <ul>
+      <li>Java Basics – By HackerRank & Sololearn</li>
+      <li>Problem Soloving – By HackerRank</li>
+      <li>Cyber security – From Deloitte</li>
+     <li>Java Intermidiate – By HackerRank & Sololearn</li>
+
+    </ul>
+  </div>
+
+  <div class="section fade-in">
+    <h2><i data-feather="star" class="icon"></i> Achievements</h2>
+    <ul>
+      <li>Top Rank in unstop course</li>
+      <li>Problem solving and logic thinking</li>
+    </ul>
+  </div>
+
+  <div class="section fade-in">
+    <h2><i data-feather="activity" class="icon"></i> Hobbies</h2>
+    <ul>
+      <li>Reading Books</li>
+      <li>Gaming</li>
+    </ul>
+  </div>
+
+  <div class="section fade-in">
+    <h2><i data-feather="mail" class="icon"></i> Contact</h2>
+    <p>Email: <a href="mailto:kodicharan062@gmail.com">kodicharan062@gmail.com</a></p>
+    <p>Phone: <a href="tel:+91 9121128741">+91 9121128741</a></p>
+    <p>GitHub: <a href="https://github.com/Charanroyal418" target="_blank">github.com/Charanroyal418</a></p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/kodipunjula-charan-raj-2624b3276?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">KODIPUNJULA CHARAN RAJ</a></p>
+  </div>
+            </div>
+          <div class="section fade-in">
+                <h2><i data-feather="Send Message" class="icon"></i> Send Message</h2>
+              <div class="input-box">
+                <input type="text" name="" value="" placeholder="Name : ">
+              </div>
+              <div class="input-box">
+                <input type="text" name="" value="" placeholder="Email :">
+              </div>
+              <div class="input-box">
+                <textarea name="name" rows="4" cols="40" placeholder="Message : "></textarea>
+              </div>
+              <div class="input-box">
+                <input type="submit" class="send-btn" name="" value="Send ">
+              </div>
+            </div>
+
+  <footer>
+    <p>© 2025 Charan Raj. All Rights Reserved.</p>
+  </footer>
+</div>
+
+<!-- particles.js library -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  // Configure particles
+  particlesJS('particles-js', {
+    "particles": {
+      "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+      "color": { "value": "#00ffff" },
+      "shape": {
+        "type": "circle",
+        "stroke": { "width": 0, "color": "#000000" },
+      },
+      "opacity": {
+        "value": 0.3,
+        "random": true,
+        "anim": { "enable": true, "speed": 1, "opacity_min": 0.1, "sync": false }
+      },
+      "size": {
+        "value": 3,
+        "random": true,
+        "anim": { "enable": true, "speed": 2, "size_min": 0.1, "sync": false }
+      },
+      "line_linked": {
+        "enable": true,
+        "distance": 150,
+        "color": "#00ffff",
+        "opacity": 0.2,
+        "width": 1
+      },
+      "move": {
+        "enable": true,
+        "speed": 1,
+        "direction": "none",
+        "random": true,
+        "straight": false,
+        "out_mode": "out",
+        "bounce": false,
+      }
+    },
+    "interactivity": {
+      "detect_on": "canvas",
+      "events": {
+        "onhover": { "enable": true, "mode": "grab" },
+        "onclick": { "enable": true, "mode": "push" },
+        "resize": true
+      },
+      "modes": {
+        "grab": { "distance": 140, "line_linked": { "opacity": 0.8 } },
+        "push": { "particles_nb": 4 }
+      }
+    },
+    "retina_detect": true
+  });
+
+  // Activate icons
+  feather.replace();
+  
+  // Scroll animation
+  const fadeElements = document.querySelectorAll('.fade-in');
+  
+  function checkFade() {
+    fadeElements.forEach(element => {
+      const elementTop = element.getBoundingClientRect().top;
+      const elementBottom = element.getBoundingClientRect().bottom;
+      
+      if (elementTop < window.innerHeight - 100 && elementBottom > 0) {
+        element.classList.add('active');
+      }
+    });
+  }
+  
+  // Initial check
+  window.addEventListener('load', checkFade);
+  // Check on scroll
+  window.addEventListener('scroll', checkFade);
+</script>
+
+</body>
+</html>
